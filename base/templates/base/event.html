@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Events{% endblock title %}
+
+{% block content %}
+<div>
+    <h1>{{event.name}}</h1>
+    {% if registered %}
+    <p style="color: green">You Are Already Registered</p>
+    {% else %}
+    <a href="{% url 'registration_confirmation' event.id %}">Register</a>
+    {% endif %}
+    
+
+    {% if submitted %}
+    <p style="color: green">You Have Submitted</p>
+    {% else %}
+    <a href="{% url 'project_submission' event.id %}">Submit Project</a>
+    {% endif %}
+    
+    <p>{{event.description}}</p>  
+</div>
+
+<div>
+    <h3>Events Participants</h3>
+    {% for participant in participants  %}
+    <h3>{{participant.name}}</h3>
+    {% endfor %}
+</div>
+
+{% endblock %}
